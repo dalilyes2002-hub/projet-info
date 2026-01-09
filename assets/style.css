@@ -1,0 +1,240 @@
+/* ===================================== */
+/* GÉNÉRATEUR DE CV – CSS GLOBAL FINAL    */
+/* ===================================== */
+
+/* ---------- VARIABLES ---------- */
+:root {
+    --cv-primary: #0f172a;
+    --cv-secondary: #6366f1;
+    --cv-accent: #fb7185;
+    --cv-dark: #020617;
+    --cv-light: #f8fafc;
+    --cv-border: #e2e8f0;
+    --cv-error: #ef4444;
+    --cv-success: #22c55e;
+    --cv-shadow: rgba(15, 23, 42, 0.15);
+    --cv-transition: all 0.3s ease;
+    --cv-radius: 12px;
+    --cv-radius-large: 20px;
+}
+
+/* ---------- MODE SOMBRE ---------- */
+.dark-mode {
+    --cv-primary: #e5e7eb;
+    --cv-secondary: #818cf8;
+    --cv-accent: #fb7185;
+    --cv-dark: #f8fafc;
+    --cv-light: #020617;
+    --cv-border: #1e293b;
+    --cv-shadow: rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- BASE ---------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--cv-light);
+    color: var(--cv-dark);
+    margin: 0;
+    padding-top: 70px;
+    line-height: 1.6;
+    transition: var(--cv-transition);
+}
+
+*:focus {
+    outline: 2px solid var(--cv-secondary);
+    outline-offset: 2px;
+}
+
+/* ---------- BOUTONS ---------- */
+.btn {
+    padding: 12px 22px;
+    border-radius: var(--cv-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--cv-transition);
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--cv-secondary), var(--cv-accent));
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px var(--cv-shadow);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--cv-success), var(--cv-secondary));
+    color: #fff;
+}
+
+/* ---------- LAYOUT ---------- */
+.cv-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+@media (max-width: 992px) {
+    .cv-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+
+/* ---------- CARTES ---------- */
+.cv-form-card,
+.cv-preview-card {
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    border-radius: var(--cv-radius-large);
+    padding: 2rem;
+    border: 1px solid var(--cv-border);
+    box-shadow: 0 25px 60px var(--cv-shadow);
+}
+
+/* ---------- FORMULAIRES ---------- */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border-radius: var(--cv-radius);
+    border: 1px solid var(--cv-border);
+    transition: var(--cv-transition);
+}
+
+.form-control:focus {
+    border-color: var(--cv-secondary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.form-control.error {
+    border-color: var(--cv-error);
+}
+
+/* ---------- PREVIEW CV ---------- */
+.cv-preview {
+    line-height: 1.6;
+}
+
+.cv-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.cv-header h1 {
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--cv-secondary), var(--cv-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.cv-header p {
+    color: #64748b;
+}
+
+/* ---------- SECTIONS ---------- */
+.cv-section h4 {
+    margin-bottom: 0.5rem;
+    padding-left: 10px;
+    border-left: 4px solid var(--cv-accent);
+    color: var(--cv-primary);
+}
+
+/* ---------- TEXTE ---------- */
+.cv-preview span,
+.cv-preview p {
+    font-size: 0.95rem;
+}
+
+/* ---------- COMPÉTENCES ---------- */
+.cv-skills {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.cv-skills li {
+    background: linear-gradient(135deg, var(--cv-secondary), var(--cv-accent));
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ---------- PHOTO ---------- */
+.cv-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+    object-fit: cover;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(135deg, var(--cv-secondary), var(--cv-accent)) border-box;
+    border: 4px solid transparent;
+}
+
+/* ---------- ANIMATIONS ---------- */
+.updated {
+    animation: pulse 0.3s ease;
+    color: var(--cv-success);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .cv-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .cv-photo {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* ---------- EXPORT PDF ---------- */
+#exportPDF.loading::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
